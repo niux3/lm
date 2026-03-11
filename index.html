@@ -27,7 +27,15 @@
               <input type="text" name="lastname">
             </label>
             <label class="cell small-12">
-              <span>position</span>
+              <span>Status</span>
+              <select name="status">
+                <option value="">choisir</option>
+                <option value="développeuur">développeur</option>
+                <option value="lead développeuur" selected>lead développeur</option>
+              </select>
+            </label>
+            <label class="cell small-12">
+              <span>Position</span>
               <select name="position">
                 <option value="">choisir</option>
                 <option value="frontend">frontend</option>
@@ -50,6 +58,10 @@
                 <input type="number" name="tjm" value="0" aria-label="définir valeur numérique">
               </span>
             </span>
+            <label class="cell small-12">
+              <span>Qui ?</span>
+              <input type="text" name="who">
+            </label>
             <label class="cell small-12">
               <span>Expertise Métier / Références</span>
               <textarea name="expertise"></textarea>
@@ -89,9 +101,10 @@
     </template>
 <template id="tplLm">Bonjour [[= civility ]][[ if(firstname !==''){]] [[= firstname ]][[}]][[ if(lastname !==''){]] [[= lastname ]][[}]],
 
-Je suis très intéressé par votre mission [[= contrat ]] et pour cette belle opportunité ! [[ if(expertise !== ''){]]J'ai une expertise avérée dans [[- expertise ]].[[}]]
+Je suis très intéressé par la mission en [[= contrat ]] et pour cette belle opportunité chez [[= who !== ''? who : 'vous' ]] ! [[ if(expertise !== ''){]]J'ai une expertise avérée dans [[- expertise ]].[[}]]
 
-J’ai une solide expérience [[= position ]] [[if(techno !== ''){]]avec [[= techno ]] [[}]](16 ans d'expérience et plus de 50 projets).
+J’ai une solide expérience [[= status]] [[= position ]] [[if(techno !== ''){]]avec [[= techno ]] [[}]](16 ans d'expérience et plus de 50 projets).
+Mon expérience me permet d'intervenir rapidement sur vos développements complexes tout en garantissant la maintenabilité et l'évolutivité du code.
 
 [[ if(contrat === 'freelance'){]]- TJM : [[= tjm ]] € HT[[}]]
 - Disponible [[= date ]] 

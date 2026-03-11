@@ -42,26 +42,41 @@ function debounce(func, wait, immediate, context) {
   ]
 
   const technos_sector = {
-    "backend": [
-      { name: "linux", value: "GNU/Linux" },
-      { name: "docker", value: "Docker" },
+    "langages": [
       { name: "python", value: "Python" },
-      { name: "django", value: "Django" },
-      { name: "flask", value: "Flask" },
-      { name: "fastapi", value: "Fastapi" },
-      { name: "postresql", value: "PostreSQL" },
-      { name: "mysql", value: "MySQL" },
-      { name: "mongodb", value: "MongoDB" },
-    ],
-    "frontend": [
       { name: "html", value: "HTML" },
       { name: "css", value: "CSS" },
       { name: "javascript", value: "Javascript" },
       { name: "typescript", value: "Typescript" },
+    ],
+    "backend": [
+      { name: "linux", value: "GNU/Linux" },
+      { name: "docker", value: "Docker" },
+      { name: "celery", value: "Celery" },
+      { name: "expressjs", value: "ExpressJS" },
+      { name: "django", value: "Django" },
+      { name: "drf", value: "Django Rest Framework" },
+      { name: "flask", value: "Flask" },
+      { name: "flask_rest_full", value: "Flask REST" },
+      { name: "fastapi", value: "Fastapi" },
+    ],
+    "base de données": [
+      { name: "postgresql", value: "PostgreSQL" },
+      { name: "mysql", value: "MySQL" },
+      { name: "mongodb", value: "MongoDB" },
+      { name: "sqlite", value: "SQLite" },
+      { name: "redis", value: "Redis" },
+    ],
+    "frontend": [
+      { name: "a11y", value: "Accessibilité" },
+      { name: "seo", value: "SEO" },
       { name: "nodejs", value: "NodeJS" },
       { name: "svelte", value: "Svelte" },
+      { name: "sveltekit", value: "Sveltekit" },
       { name: "vuejs", value: "VueJS" },
-      { name: "reactjs", value: "ReactJS" },
+      { name: "nuxtjs", value: "NuxtJS" },
+      { name: "nextjs", value: "NextJS" },
+      { name: "astro", value: "Astro" },
     ],
   }
 
@@ -124,9 +139,11 @@ function debounce(func, wait, immediate, context) {
       'civility': form.getAll('civility').join(', '),
       'firstname': form.get('firstname'),
       'lastname': form.get('lastname'),
+      'status': form.get('status'),
       'position': form.get('position'),
       'contrat': form.get('contrat'),
       'tjm': form.get('tjm'),
+      'who': form.get('who'),
       'expertise': form.get('expertise'),
       'techno': form.getAll('techno').join(', '),
       'date': now.getDay() < 15 ? `mi-${months[now.getMonth()].toLocaleLowerCase()}` : `début ${months[(now.getMonth() + 1) % 12].toLocaleLowerCase()}`
