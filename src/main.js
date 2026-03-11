@@ -44,6 +44,7 @@ function debounce(func, wait, immediate, context) {
   const technos_sector = {
     "langages": [
       { name: "python", value: "Python" },
+      { name: "sql", value: "SQL" },
       { name: "html", value: "HTML" },
       { name: "css", value: "CSS" },
       { name: "javascript", value: "Javascript" },
@@ -75,6 +76,7 @@ function debounce(func, wait, immediate, context) {
       { name: "sveltekit", value: "Sveltekit" },
       { name: "vuejs", value: "VueJS" },
       { name: "nuxtjs", value: "NuxtJS" },
+      { name: "reactjs", value: "ReactJS" },
       { name: "nextjs", value: "NextJS" },
       { name: "astro", value: "Astro" },
     ],

@@ -101,7 +101,7 @@
     </template>
 <template id="tplLm">Bonjour [[= civility ]][[ if(firstname !==''){]] [[= firstname ]][[}]][[ if(lastname !==''){]] [[= lastname ]][[}]],
 
-Je suis très intéressé par la mission en [[= contrat ]] et pour cette belle opportunité chez [[= who !== ''? who : 'vous' ]] ! [[ if(expertise !== ''){]]J'ai une expertise avérée dans [[- expertise ]].[[}]]
+Je suis très intéressé par la mission en [[= contrat ]] et pour cette belle opportunité [[= who !== ''? `chez ${who}` : 'au sein de votre structure' ]] ! [[ if(expertise !== ''){]]J'ai une expertise avérée dans [[- expertise ]].[[}]]
 
 J’ai une solide expérience [[= status]] [[= position ]] [[if(techno !== ''){]]avec [[= techno ]] [[}]](16 ans d'expérience et plus de 50 projets).
 Mon expérience me permet d'intervenir rapidement sur vos développements complexes tout en garantissant la maintenabilité et l'évolutivité du code.
