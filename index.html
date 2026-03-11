@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LM</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.9.0/dist/css/foundation.min.css" crossorigin="anonymous">
+  </head>
+  <body>
+    <main class="grid-container">
+      <form method="get" class="grid-x grid-padding-x">
+        <div class="cell large-6">
+          <div class="grid-x grid-padding-x">
+            <fieldset class="small-12 cell">
+              <legend>Civilité</legend>
+              <input type="checkbox" name="civility" value="Mademoiselle" id="mlle"><label for="mlle">Mademoiselle</label>
+              <input type="checkbox" name="civility" checked value="Madame" id="mme"><label for="mme">Madame</label>
+              <input type="checkbox" name="civility" checked value="Monsieur" id="m"><label for="m">Monsieur</label>
+            </fieldset>
+            <label class="cell small-12">
+              <span>Prénom</span>
+              <input type="text" name="firstname">
+            </label>
+            <label class="cell small-12">
+              <span>Nom</span>
+              <input type="text" name="lastname">
+            </label>
+            <label class="cell small-12">
+              <span>position</span>
+              <select name="position">
+                <option value="">choisir</option>
+                <option value="frontend">frontend</option>
+                <option value="backend">backend</option>
+                <option value="fullstack" selected>fullstack</option>
+              </select>
+            </label>
+            <label class="cell small-12">
+              <span>Contrat</span>
+              <select name="contrat">
+                <option value="">choisir</option>
+                <option value="CDI">CDI</option>
+                <option value="freelance">freelance</option>
+              </select>
+            </label>
+            <span class="cell small-12">
+              <span>TJM</span>
+              <span>
+                <input type="range" min="500" max="650" step="10" style="display:block; width:100%" aria-label="définir valeur">
+                <input type="number" name="tjm" value="0" aria-label="définir valeur numérique">
+              </span>
+            </span>
+            <label class="cell small-12">
+              <span>Expertise Métier / Références</span>
+              <textarea name="expertise"></textarea>
+            </label>
+          </div>
+        </div>
+        <div class="cell large-6">
+          <div class="grid-x grid-padding-x">
+            <fieldset class="small-12 cell">
+              <legend>Technologies</legend>
+              <div class="grid-x grid-margin-x"><input type="text" id="search" aria-label="chercher" class="cell small-9"><button class="button alert cell small-3" type="button">&#x2715;</button></div>
+              <div id="technoRender"></div>
+            </fieldset>
+          </div>
+        </div>
+        <button class="button expanded" type="submit">envoyer</button>
+      </form>
+    </main>
+<div class="callout success" data-closable="slide-out-right">
+  <h5>submit</h5>
+  <p>copié !</p>
+  <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    <template id="tplTechno">
+  [[ for(const sector in technos_sector) { ]]
+    <fieldset class="fieldset">
+      <legend>[[- sector ]]</legend>
+      
+      [[ for(const techno of technos_sector[sector]) { ]]
+        <span><input type="checkbox" name="techno" value="[[- techno.value]]" id="[[- techno.name ]]"><label for="[[- techno.name ]]">[[- techno.value ]]</label></span>
+      [[ } ]]
+      
+    </fieldset>
+  [[ } ]]
+    </template>
+<template id="tplLm">Bonjour [[= civility ]][[ if(firstname !==''){]] [[= firstname ]][[}]][[ if(lastname !==''){]] [[= lastname ]][[}]],
+
+Je suis très intéressé par votre mission [[= contrat ]] et pour cette belle opportunité ! [[ if(expertise !== ''){]]J'ai une expertise avérée dans [[- expertise ]].[[}]]
+
+J’ai une solide expérience [[= position ]] [[if(techno !== ''){]]avec [[= techno ]] [[}]](16 ans d'expérience et plus de 50 projets).
+
+[[ if(contrat === 'freelance'){]]- TJM : [[= tjm ]] € HT[[}]]
+- Disponible [[= date ]] 
+- Présence sur site
+- Téléphone : 06 03 61 78 39
+- email : renaudbourdeau@gmail.com
+- site : https://rb-webstudio.go.yj.fr/
+- cv : https://rb-webstudio.go.yj.fr/static/renaud-bourdeau-cv.pdf
+- Mon linkedin : https://www.linkedin.com/in/renaud-bourdeau-%F0%9F%90%A7-7639b944/
+
+Hâte d’échanger !
+
+Cordialement,
+
+Renaud Bourdeau</template>
+  
+  
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
