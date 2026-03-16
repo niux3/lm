@@ -55,6 +55,13 @@ function debounce(func, wait, immediate, context) {
       { name: "pandas", value: "Pandas" },
       { name: "matplotlib", value: "Matplotlib" },
     ],
+    "base de données": [
+      { name: "postgresql", value: "PostgreSQL" },
+      { name: "mysql", value: "MySQL" },
+      { name: "mongodb", value: "MongoDB" },
+      { name: "sqlite", value: "SQLite" },
+      { name: "redis", value: "Redis" },
+    ],
     "backend": [
       { name: "linux", value: "GNU/Linux" },
       { name: "docker", value: "Docker" },
@@ -65,13 +72,6 @@ function debounce(func, wait, immediate, context) {
       { name: "flask", value: "Flask" },
       { name: "flask_rest_full", value: "Flask REST" },
       { name: "fastapi", value: "Fastapi" },
-    ],
-    "base de données": [
-      { name: "postgresql", value: "PostgreSQL" },
-      { name: "mysql", value: "MySQL" },
-      { name: "mongodb", value: "MongoDB" },
-      { name: "sqlite", value: "SQLite" },
-      { name: "redis", value: "Redis" },
     ],
     "frontend": [
       { name: "a11y", value: "Accessibilité" },
