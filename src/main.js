@@ -50,6 +50,11 @@ function debounce(func, wait, immediate, context) {
       { name: "javascript", value: "Javascript" },
       { name: "typescript", value: "Typescript" },
     ],
+    "annalyse": [
+      { name: "numpy", value: "Numpy" },
+      { name: "pandas", value: "Pandas" },
+      { name: "matplotlib", value: "Matplotlib" },
+    ],
     "backend": [
       { name: "linux", value: "GNU/Linux" },
       { name: "docker", value: "Docker" },
