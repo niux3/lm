@@ -153,7 +153,7 @@ function debounce(func, wait, immediate, context) {
       'who': form.get('who'),
       'expertise': form.get('expertise'),
       'techno': form.getAll('techno').join(', '),
-      'date': now.getDay() < 15 ? `mi-${months[now.getMonth()].toLocaleLowerCase()}` : `début ${months[(now.getMonth() + 1) % 12].toLocaleLowerCase()}`
+      'date': now.getDate() < 15 ? `mi-${months[now.getMonth()].toLocaleLowerCase()}` : `début ${months[(now.getMonth() + 1) % 12].toLocaleLowerCase()}`
     }
     const text = engine.render(tpl.innerHTML, data)
     navigator.clipboard.writeText(text)
