@@ -5,9 +5,9 @@ import './style.css'
 function debounce(func, wait, immediate, context) {
   var result,
     timeout = null
-  return function() {
+  return function () {
     var ctx = context || this, args = arguments
-    var later = function() {
+    var later = function () {
       timeout = null
       if (!immediate) result = func.apply(ctx, args)
     }
