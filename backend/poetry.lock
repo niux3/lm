@@ -16,6 +16,29 @@ files = [
 tests = ["mypy (>=1.14.0)", "pytest", "pytest-asyncio"]
 
 [[package]]
+name = "crispy-forms-foundation"
+version = "1.1.0"
+description = "Django application to add 'django-crispy-forms' layout objects for 'Foundation for sites'"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "crispy_forms_foundation-1.1.0.tar.gz", hash = "sha256:5f4544787277599e281964c0a5ffdac1d606613bd7bf4ce50a60554dd9eb3100"},
+]
+
+[package.dependencies]
+Django = ">=4.2"
+django-crispy-forms = ">=2.0"
+
+[package.extras]
+dev = ["pytest (>=7.0.0)", "pytest-django (>=4.0.0)"]
+doc = ["furo (>=2024.8.6)", "sphinx (>=8.0.2)", "sphinx-copybutton (>=0.5.2)"]
+doc-live = ["livereload (>=2.7.0)"]
+quality = ["flake8 (>=6.0.0)", "tox (>=4.11.0)"]
+release = ["twine (>=5.0.0)"]
+sandbox = ["django-debug-toolbar (>=4.4.0)"]
+
+[[package]]
 name = "django"
 version = "5.2"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
@@ -35,6 +58,21 @@ tzdata = {version = "*", markers = "sys_platform == \"win32\""}
 [package.extras]
 argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
+
+[[package]]
+name = "django-crispy-forms"
+version = "2.6"
+description = "Best way to have Django DRY forms"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "django_crispy_forms-2.6-py3-none-any.whl", hash = "sha256:8ee0ae28b6b0ac41ff48a65944480c049fe8d1b0047086874fd7efabf4ec1374"},
+    {file = "django_crispy_forms-2.6.tar.gz", hash = "sha256:4921a1087c6cd4f9fa3c139654c1de1c1c385f8bd6729aaee530bc0121ab4b93"},
+]
+
+[package.dependencies]
+django = ">=5.2"
 
 [[package]]
 name = "django-extensions"
@@ -160,4 +198,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "a5adc9037186f8d9e5ec4c75cf9b0cc197072f59e3362d098d859c80bca359c2"
+content-hash = "00ea1400d24fd69b9329de5bbc3c87baf89bcf4a525414ac95c6e2868838e3eb"
