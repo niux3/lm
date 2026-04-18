@@ -4,3 +4,4 @@ from candidacy.models.position import Position
 from candidacy.models.status import Status
 from candidacy.models.technology_category import TechnologyCategory
 from candidacy.models.technology import Technology
+from candidacy.models.candidacy import Candidacy
