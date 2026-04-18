@@ -22,7 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-Session.vim
 
 
 # Django #
@@ -168,3 +167,5 @@ GitHub.sublime-settings
 # divers
 .DS_Store
 tags
+.ropeproject
+Session.vim
