@@ -1,7 +1,54 @@
 {% extends 'default.html' %}
-
+{% load crispy_forms_tags %}
 
 {% block content %}
+    <main class="grid-container">
+      <form method="post" class="grid-x grid-padding-x">
+        {% csrf_token %}
+        <div class="cell large-4">
+            <fieldset class="small-12 cell">
+              <legend>Civilité</legend>
+              {{ form.civilities | as_crispy_field }}
+            </fieldset>
+            <div class="small-12 cell">
+              {{ form.firstname | as_crispy_field }}
+            </div>
+            <div class="small-12 cell">
+              {{ form.lastname | as_crispy_field }}
+            </div>
+            <div class="small-12 cell">
+              {{ form.status | as_crispy_field }}
+            </div>
+            <div class="small-12 cell">
+              {{ form.position | as_crispy_field }}
+            </div>
+            <div class="small-12 cell">
+              {{ form.contract | as_crispy_field }}
+            </div>
+            <div class="small-12 cell">
+              {{ form.tjm | as_crispy_field }}
+            </div>
+            <div class="small-12 cell">
+              {{ form.who | as_crispy_field }}
+            </div>
+            <div class="small-12 cell">
+              {{ form.expertise | as_crispy_field }}
+            </div>
+        </div>
+        <div class="cell large-4">
+          <div class="grid-x grid-padding-x">
+            <fieldset class="small-12 cell">
+              <legend>Technologies</legend>
+              <div class="grid-x grid-margin-x"><input type="text" id="search" aria-label="chercher" class="cell small-9"><button class="button alert cell small-3" type="button">&#x2715;</button></div>
+              <div id="technoRender"></div>
+            </fieldset>
+          </div>
+        </div>
+        <!-- {{ form.as_p}} -->
+        <button type="submit" class="button">envoyer</button>
+      </form>
+    </main>
+    <!--
     <main class="grid-container">
       <form method="get" class="grid-x grid-padding-x">
         <div class="cell large-6">
@@ -114,5 +161,5 @@ Hâte d’échanger !
 Cordialement,
 
 Renaud Bourdeau</template>
-
+-->
 {% endblock %}
