@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import sys
 from pathlib import Path
+from crispy_forms_foundation.settings import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,7 +44,11 @@ DJANGO_APPS = [
 
 EXTENSIONS_APPS = [
     'django_extensions',
+    'crispy_forms',
+    'crispy_forms_foundation',
 ]
+
+CRISPY_TEMPLATE_PACK = 'foundation-6'
 
 MY_APPS = [
     f'{app.name}.apps.{app.name.title()}Config' for app in APP_DIRS.iterdir()]
