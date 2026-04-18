@@ -1,9 +1,11 @@
 from django.db import models
 
 
-class AbstractModel(models.Model):
+class BaseLookup(models.Model):
     class Meta:
         abstract = True
 
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    name = models.CharField(max_length=16)
+
+    def __str__(self):
+        return '%s : %s' % (self.pk, self.name)
