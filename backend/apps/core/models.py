@@ -8,4 +8,4 @@ class BaseLookup(models.Model):
     name = models.CharField(max_length=16)
 
     def __str__(self):
-        return '%s : %s' % (self.pk, self.name)
+        return '%s' % self.name
