@@ -22,6 +22,7 @@ function debounce(func, wait, immediate, context) {
 
 
 (() => {
+    document.querySelector('label[for="id_tjm"]').insertAdjacentHTML('afterend', document.getElementById('tplTjm').innerHTML)
     document.querySelector('input[type="range"]').addEventListener('input', e => {
         e.target.nextElementSibling.value = e.target.value
     })
@@ -41,83 +42,39 @@ function debounce(func, wait, immediate, context) {
         'Décembre',
     ]
 
-    const technos_sector = {
-        "langages": [
-            { name: "python", value: "Python" },
-            { name: "sql", value: "SQL" },
-            { name: "html", value: "HTML" },
-            { name: "css", value: "CSS" },
-            { name: "javascript", value: "Javascript" },
-            { name: "typescript", value: "Typescript" },
-        ],
-        "annalyse": [
-            { name: "numpy", value: "Numpy" },
-            { name: "pandas", value: "Pandas" },
-            { name: "matplotlib", value: "Matplotlib" },
-        ],
-        "base de données": [
-            { name: "postgresql", value: "PostgreSQL" },
-            { name: "mysql", value: "MySQL" },
-            { name: "mongodb", value: "MongoDB" },
-            { name: "sqlite", value: "SQLite" },
-            { name: "redis", value: "Redis" },
-        ],
-        "backend": [
-            { name: "linux", value: "GNU/Linux" },
-            { name: "docker", value: "Docker" },
-            { name: "celery", value: "Celery" },
-            { name: "expressjs", value: "ExpressJS" },
-            { name: "django", value: "Django" },
-            { name: "drf", value: "Django Rest Framework" },
-            { name: "flask", value: "Flask" },
-            { name: "flask_rest_full", value: "Flask REST" },
-            { name: "fastapi", value: "Fastapi" },
-        ],
-        "frontend": [
-            { name: "a11y", value: "Accessibilité" },
-            { name: "seo", value: "SEO" },
-            { name: "nodejs", value: "NodeJS" },
-            { name: "svelte", value: "Svelte" },
-            { name: "sveltekit", value: "Sveltekit" },
-            { name: "vuejs", value: "VueJS" },
-            { name: "nuxtjs", value: "NuxtJS" },
-            { name: "reactjs", value: "ReactJS" },
-            { name: "nextjs", value: "NextJS" },
-            { name: "astro", value: "Astro" },
-        ],
-    }
-
-    const tplTechnos = document.getElementById('tplTechno')
-    const technoRender = document.getElementById('technoRender')
-    technoRender.innerHTML = engine.render(tplTechnos.innerHTML, { technos_sector })
-
     const search = document.getElementById('search')
     const resetButton = search.nextElementSibling
 
     const filterTechnos = (searchValue) => {
         const value = searchValue.toLowerCase()
 
-        for (const sector in technos_sector) {
+        // Récupère tous les fieldsets de technologies
+        const fieldsets = technoRender.querySelectorAll('fieldset.fieldset')
+
+        fieldsets.forEach(fieldset => {
             let hasVisibleTechno = false
 
-            technos_sector[sector].forEach(r => {
-                const el = document.getElementById(r.name)
-                if (el) {
-                    const container = el.closest('span')
-                    const isMatch = r.value.toLowerCase().includes(value)
-                    container.classList.toggle('hide', !isMatch)
-                    if (isMatch) hasVisibleTechno = true
+            // Récupère tous les spans contenant les checkboxes
+            const spans = fieldset.querySelectorAll('span')
+
+            spans.forEach(span => {
+                const label = span.querySelector('label')
+                if (label) {
+                    const labelText = label.textContent.toLowerCase()
+                    const isMatch = labelText.includes(value)
+
+                    // Cache ou affiche le span
+                    span.classList.toggle('hide', !isMatch)
+
+                    if (isMatch) {
+                        hasVisibleTechno = true
+                    }
                 }
             })
 
-            const fieldsets = document.querySelectorAll('#technoRender fieldset')
-            fieldsets.forEach(fs => {
-                const legend = fs.querySelector('legend')
-                if (legend && legend.textContent.toLowerCase() === sector.toLowerCase()) {
-                    fs.classList.toggle('hide', !hasVisibleTechno)
-                }
-            })
-        }
+            // Cache ou affiche le fieldset entier
+            fieldset.classList.toggle('hide', !hasVisibleTechno)
+        })
     }
 
     search.addEventListener('input', e => {
