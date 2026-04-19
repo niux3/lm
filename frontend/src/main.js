@@ -96,16 +96,20 @@ function debounce(func, wait, immediate, context) {
 
     const tpl = document.getElementById('tplLm')
     const now = new Date()
+
+    document.querySelectorAll('*[required]').forEach(el => el.removeAttribute('required'))
+
     document.querySelector('form').addEventListener('submit', e => {
         e.preventDefault()
         const form = new FormData(e.target)
-        form.set('civility', form.getAll('civility').join(', '))
+        form.set('civilities', form.getAll('civilities').join(', '))
         form.set('techno', form.getAll('techno').join(', '))
         form.append('date', now.getDate() < 15 ? `mi-${months[now.getMonth()].toLocaleLowerCase()}` : `début ${months[(now.getMonth() + 1) % 12].toLocaleLowerCase()}`)
         form.append('url', window.location.href)
+        console.table(Object.fromEntries(form))
 
-        const text = engine.render(tpl.innerHTML, Object.fromEntries(form))
-        navigator.clipboard.writeText(text)
+        // const text = engine.render(tpl.innerHTML, Object.fromEntries(form))
+        // navigator.clipboard.writeText(text)
         e.target.reset()
         const alert = document.querySelector('.callout')
         alert.classList.add('display')
