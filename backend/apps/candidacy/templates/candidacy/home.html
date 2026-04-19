@@ -49,10 +49,7 @@
                   <fieldset class="fieldset">
                     <legend>{{ category.name | title }}</legend>
                     {% for tech in category.technologies.all %}
-                      <span>
-                        <input type="checkbox" id="{{ tech.name }}_{{ tech.id }}" name="{{ tech.name}}" value="{{ tech.value }}">
-                        <label for="{{ tech.name }}_{{ tech.id }}">{{ tech.value }}</label>
-                      </span>
+                      <span><input type="checkbox" id="{{ tech.name }}_{{ tech.id }}" name="{{ tech.name}}" value="{{ tech.value }}"><label for="{{ tech.name }}_{{ tech.id }}">{{ tech.value }}</label></span>
                     {% endfor %}
                   </fieldset>
                 {% endfor %}
@@ -60,8 +57,22 @@
             </fieldset>
           </div>
         </div>
+        <div class="cell large-4">
+          <fieldset class="small-12 cell fieldset">
+            <legend>Meta</legend>
+            <div class="small-12 cell">
+              {{ form.url_source | as_crispy_field }}
+            </div>
+            <div class="small-12 cell">
+              {{ form.title | as_crispy_field }}
+            </div>
+            <div class="small-12 cell">
+              {{ form.description | as_crispy_field }}
+            </div>
+          </fieldset>
+        </div>
         <!-- {{ form.as_p}} -->
-        <button type="submit" class="button">envoyer</button>
+        <button type="submit" class="button expanded">envoyer</button>
       </form>
     </main>
     <!--
