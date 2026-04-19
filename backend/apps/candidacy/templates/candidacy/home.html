@@ -7,8 +7,12 @@
         {% csrf_token %}
         <div class="cell large-4">
             <fieldset class="small-12 cell">
-              <legend>Civilité</legend>
-              {{ form.civilities | as_crispy_field }}
+              <legend>Civilités</legend>
+              {% for civility in form.civilities %}
+              {{ civility.tag }}
+              <label for="{{ civility.id_for_label }}">{{ civility.choice_label }}</label>
+              {% endfor %}
+
             </fieldset>
             <div class="small-12 cell">
               {{ form.firstname | as_crispy_field }}
@@ -40,7 +44,19 @@
             <fieldset class="small-12 cell">
               <legend>Technologies</legend>
               <div class="grid-x grid-margin-x"><input type="text" id="search" aria-label="chercher" class="cell small-9"><button class="button alert cell small-3" type="button">&#x2715;</button></div>
-              <div id="technoRender"></div>
+              <div id="technoRender">
+                {% for category in technology_categories %}
+                  <fieldset class="fieldset">
+                    <legend>{{ category.name | title }}</legend>
+                    {% for tech in category.technologies.all %}
+                      <span>
+                        <input type="checkbox" id="{{ tech.name }}_{{ tech.id }}" name="{{ tech.name}}" value="{{ tech.value }}">
+                        <label for="{{ tech.name }}_{{ tech.id }}">{{ tech.value }}</label>
+                      </span>
+                    {% endfor %}
+                  </fieldset>
+                {% endfor %}
+              </div>
             </fieldset>
           </div>
         </div>
