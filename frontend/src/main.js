@@ -9,20 +9,6 @@ import './style.css'
         e.target.nextElementSibling.value = e.target.value
     })
     const engine = new TemplateEngine()
-    const months = [
-        'Janvier',
-        'Février',
-        'Mars',
-        'Avril',
-        'Mai',
-        'Juin',
-        'Juillet',
-        'Août',
-        'Septembre',
-        'Octobre',
-        'Novembre',
-        'Décembre',
-    ]
 
     const search = document.getElementById('search')
     const resetButton = search.nextElementSibling
@@ -77,21 +63,16 @@ import './style.css'
     })
 
     const tpl = document.getElementById('tplLm')
-    const now = new Date()
 
     document.querySelectorAll('*[required]').forEach(el => el.removeAttribute('required'))
 
     document.querySelector('form').addEventListener('submit', e => {
         e.preventDefault()
         const data = extractFormData(e.target)
-        // const form = new FormData(e.target)
-        // form.set('civilities', form.getAll('civilities').join(', '))
-        // form.set('techno', form.getAll('techno').join(', '))
-        // form.append('date', now.getDate() < 15 ? `mi-${months[now.getMonth()].toLocaleLowerCase()}` : `début ${months[(now.getMonth() + 1) % 12].toLocaleLowerCase()}`)
-        // form.append('url', window.location.href)
         console.table(data)
 
-        // const text = engine.render(tpl.innerHTML, Object.fromEntries(form))
+        const text = engine.render(tpl.innerHTML, data)
+        console.log(text)
         // navigator.clipboard.writeText(text)
         e.target.reset()
         const alert = document.querySelector('.callout')

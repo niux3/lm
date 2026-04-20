@@ -1,4 +1,5 @@
 export const extractFormData = (form) => {
+    const now = new Date()
     const formData = new FormData(form)
 
     const getLabel = (selector) => {
@@ -21,6 +22,21 @@ export const extractFormData = (form) => {
         return select?.options[select.selectedIndex]?.text || ''
     }
 
+    const months = [
+        'Janvier',
+        'Février',
+        'Mars',
+        'Avril',
+        'Mai',
+        'Juin',
+        'Juillet',
+        'Août',
+        'Septembre',
+        'Octobre',
+        'Novembre',
+        'Décembre',
+    ]
+
     return {
         // Noms pour affichage
         civility: getCheckboxLabels('civilities'),
@@ -42,6 +58,7 @@ export const extractFormData = (form) => {
         tjm: formData.get('tjm') || '0',
         who: formData.get('who') || '',
         expertise: formData.get('expertise') || '',
+        date: now.getDate() < 15 ? `mi-${months[now.getMonth()].toLocaleLowerCase()}` : `début ${months[(now.getMonth() + 1) % 12].toLocaleLowerCase()}`,
     }
 }
 
