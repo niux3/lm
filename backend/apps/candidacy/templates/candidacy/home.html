@@ -49,12 +49,13 @@
                   <fieldset class="fieldset">
                     <legend>{{ category.name | title }}</legend>
                     {% for tech in category.technologies.all %}
-                      <span><input type="checkbox" id="{{ tech.name }}_{{ tech.id }}" name="techno" value="{{ tech.value }}"><label for="{{ tech.name }}_{{ tech.id }}">{{ tech.value }}</label></span>
+                      <span><input type="checkbox" id="tech_{{ tech.pk }}" name="technologies" value="{{ tech.pk }}" {% if tech.pk in form.initial.technologies %}checked{% endif %}><label for="tech_{{ tech.pk }}">{{ tech.value }}</label></span>
                     {% endfor %}
                   </fieldset>
                 {% endfor %}
               </div>
             </fieldset>
+
           </div>
         </div>
         <div class="cell large-4">
