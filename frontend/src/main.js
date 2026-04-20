@@ -1,24 +1,6 @@
 import { TemplateEngine } from '@niuxe/template-engine'
+import { debounce, extractFormData } from './utils'
 import './style.css'
-
-
-function debounce(func, wait, immediate, context) {
-    var result,
-        timeout = null
-    return function () {
-        var ctx = context || this, args = arguments
-        var later = function () {
-            timeout = null
-            if (!immediate) result = func.apply(ctx, args)
-        }
-        var callNow = immediate && !timeout
-        clearTimeout(timeout)
-        timeout = setTimeout(later, wait)
-        if (callNow) result = func.apply(ctx, args)
-        return result
-    }
-}
-
 
 
 (() => {
@@ -101,12 +83,13 @@ function debounce(func, wait, immediate, context) {
 
     document.querySelector('form').addEventListener('submit', e => {
         e.preventDefault()
-        const form = new FormData(e.target)
-        form.set('civilities', form.getAll('civilities').join(', '))
-        form.set('techno', form.getAll('techno').join(', '))
-        form.append('date', now.getDate() < 15 ? `mi-${months[now.getMonth()].toLocaleLowerCase()}` : `début ${months[(now.getMonth() + 1) % 12].toLocaleLowerCase()}`)
-        form.append('url', window.location.href)
-        console.table(Object.fromEntries(form))
+        const data = extractFormData(e.target)
+        // const form = new FormData(e.target)
+        // form.set('civilities', form.getAll('civilities').join(', '))
+        // form.set('techno', form.getAll('techno').join(', '))
+        // form.append('date', now.getDate() < 15 ? `mi-${months[now.getMonth()].toLocaleLowerCase()}` : `début ${months[(now.getMonth() + 1) % 12].toLocaleLowerCase()}`)
+        // form.append('url', window.location.href)
+        console.table(data)
 
         // const text = engine.render(tpl.innerHTML, Object.fromEntries(form))
         // navigator.clipboard.writeText(text)
