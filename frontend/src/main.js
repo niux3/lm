@@ -76,10 +76,6 @@ import './style.css'
         formData.append('url_source', formData.get('url_source'))  // déjà présent si champ dans form
         formData.append('title', formData.get('title'))
         formData.append('description', formData.get('description'))
-        // data['message_genere'] = text
-        // data['url_source'] = formData.get('url_source')
-        // data['title'] = formData.get('title')
-        // data['description'] = formData.get('description')
 
         try {
             const response = await fetch(window.location.href, {
