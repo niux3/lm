@@ -40,7 +40,6 @@ class CandidacyForm(forms.ModelForm):
                     Technology.objects.filter(
                         value__in=['Accessibilité', 'SEO', 'GNU/Linux']).values_list('pk', flat=True)
                 )
-                print(self.initial.get('technologies'))
             except Technology.DoesNotExist:
                 ...
 
