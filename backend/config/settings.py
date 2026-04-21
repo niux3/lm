@@ -26,9 +26,13 @@ sys.path.append(str(APP_DIRS))
 SECRET_KEY = 'django-insecure-y%5gg#6ftm@n9vxkj$mq0iv7c8_*$#zbv2%l4y*k-gch*2264t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'lm.tld',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -147,6 +151,9 @@ STATICFILES_DIRS = [
     APP_DIRS / 'core' / 'static',
 ]
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
