@@ -29,7 +29,7 @@ dist-ssr
 *.pot
 *.pyc
 __pycache__
-db.sqlite3
+# db.sqlite3
 media
 
 # Backup files #
@@ -171,3 +171,5 @@ tags
 Session.vim
 media/
 staticfiles/
+backend/apps/core/static/css/*
+backend/apps/core/static/js/*
