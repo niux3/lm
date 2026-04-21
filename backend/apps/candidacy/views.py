@@ -3,7 +3,7 @@ from candidacy.models import TechnologyCategory
 from candidacy.forms import CandidacyForm
 
 
-class Home(CreateView):
+class HomeCreateView(CreateView):
     template_name = 'candidacy/home.html'
     form_class = CandidacyForm
 

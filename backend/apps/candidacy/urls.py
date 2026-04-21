@@ -1,9 +1,9 @@
 from django.urls import path
 from candidacy.apps import CandidacyConfig
-from candidacy.views import Home
+from candidacy.views import HomeCreateView
 
 app_name = CandidacyConfig.name
 
 urlpatterns = [
-    path('', Home.as_view(), name="home"),
+    path('', HomeCreateView.as_view(), name="home"),
 ]
