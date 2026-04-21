@@ -66,20 +66,67 @@ import './style.css'
 
     document.querySelectorAll('*[required]').forEach(el => el.removeAttribute('required'))
 
-    document.querySelector('form').addEventListener('submit', e => {
+    document.querySelector('form').addEventListener('submit', async (e) => {
         e.preventDefault()
         const data = extractFormData(e.target)
-        console.table(data)
+        const formData = new FormData(e.target)
 
         const text = engine.render(tpl.innerHTML, data)
-        console.log(text)
-        // navigator.clipboard.writeText(text)
-        e.target.reset()
-        const alert = document.querySelector('.callout')
-        alert.classList.add('display')
-        let d = setTimeout(() => {
-            alert.classList.remove('display')
-            clearTimeout(d)
-        }, 2000)
+        formData.append('message_genere', text)
+        formData.append('url_source', formData.get('url_source'))  // déjà présent si champ dans form
+        formData.append('title', formData.get('title'))
+        formData.append('description', formData.get('description'))
+        // data['message_genere'] = text
+        // data['url_source'] = formData.get('url_source')
+        // data['title'] = formData.get('title')
+        // data['description'] = formData.get('description')
+
+        try {
+            const response = await fetch(window.location.href, {
+                method: e.target.method,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    // 'Content-Type': 'application/json'
+                },
+                body: formData
+            })
+
+            if (!response.ok) {
+                const errorData = await response.json()
+                console.error('❌ Erreur:', errorData)
+                return
+            }
+
+            const resp_data = await response.json()
+
+            if (resp_data.success) {
+                // Copie le message dans le presse-papier
+                await navigator.clipboard.writeText(resp_data.message)
+
+                // Reset du formulaire
+                // form.reset()
+
+                // Affiche la notification
+                const alert = document.querySelector('.callout')
+                alert.classList.add('display')
+
+                setTimeout(() => {
+                    alert.classList.remove('display')
+                }, 2000)
+
+                console.log(`📋 Candidature #${resp_data.candidacy_id} sauvegardée !`)
+            }
+        } catch (error) {
+            console.error('💥 Erreur réseau:', error)
+        }
+
+
+        // e.target.reset()
+        // const alert = document.querySelector('.callout')
+        // alert.classList.add('display')
+        // let d = setTimeout(() => {
+        //     alert.classList.remove('display')
+        //     clearTimeout(d)
+        // }, 2000)
     })
 })()
