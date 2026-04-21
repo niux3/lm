@@ -169,3 +169,5 @@ GitHub.sublime-settings
 tags
 .ropeproject
 Session.vim
+media/
+staticfiles/
