@@ -46,13 +46,15 @@ class CandidacyAdmin(admin.ModelAdmin):
     # Liste des colonnes affichées
     list_display = (
         'id',
-        'destinataire',
+        'title',
+        'url_source',
         'poste_complet',
         'date_courte',
         'technos_count',
         'has_message',
         'copy_message_button',
     )
+    list_display_links = ('id', )
 
     # Filtres dans la barre latérale
     list_filter = (
