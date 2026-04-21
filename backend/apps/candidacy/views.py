@@ -23,8 +23,11 @@ class HomeCreateView(CreateView):
 
     def form_invalid(self, form):
         if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            errors = {}
+            for field, field_errors in form.errors.items():
+                errors[field] = field_errors[0]
             return JsonResponse({
                 'success': False,
-                'errors': form.errors.get_json_data(),
+                'errors': errors,
             }, status=400)
         return super().form_invalid(form)

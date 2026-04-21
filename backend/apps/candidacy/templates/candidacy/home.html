@@ -77,12 +77,26 @@
       </form>
     </main>
 <div class="callout success" data-closable="slide-out-right">
-  <h5>submit</h5>
-  <p>copié !</p>
+  <h5>candidature</h5>
+  <div class="content">
+      <p>copié !</p>
+  </div>
   <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+<template id="tplCallout">
+  [[ if(success){ ]]
+  <p>Copié !</p>
+  [[ }else{ ]]
+    <dl>
+      [[ for([ key, value ] of Object.entries(errors)){ ]]
+      <dt>[[- key ]]</dt>
+      <dd>[[- value ]]</dd>
+      [[ } ]]
+    </dl>
+  [[ } ]]
+</template>
 <template id="tplTjm">
 <input type="range" min="500" max="650" step="10" style="display:block; width:100%" aria-label="définir valeur">
 </template>

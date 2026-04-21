@@ -88,13 +88,20 @@ import './style.css'
                 body: formData
             })
 
-            if (!response.ok) {
-                const errorData = await response.json()
-                console.error('❌ Erreur:', errorData)
-                return
-            }
+            // if (!response.ok) {
+            //     const errorData = await response.json()
+            //     console.error('❌ Erreur:')
+            //     console.error(errorData)
+            // }
 
             const resp_data = await response.json()
+            const callout = document.querySelector('.callout')
+            const tplCallout = document.getElementById('tplCallout')
+
+            callout.addEventListener('click', e => {
+                callout.classList.remove('display')
+            })
+
 
             if (resp_data.success) {
                 // Copie le message dans le presse-papier
@@ -103,14 +110,27 @@ import './style.css'
                 e.target.reset()
 
                 // Affiche la notification
-                const alert = document.querySelector('.callout')
-                alert.classList.add('display')
+                callout.classList.add('success')
+                callout.classList.remove('alert')
+
+                callout.querySelector('.content').innerHTML = engine.render(tplCallout.innerHTML, resp_data)
+
+                callout.classList.add('display')
 
                 setTimeout(() => {
-                    alert.classList.remove('display')
+                    callout.classList.remove('display')
                 }, 2000)
 
                 console.log(`📋 Candidature #${resp_data.candidacy_id} sauvegardée !`)
+            } else {
+                callout.classList.remove('success')
+                callout.classList.add('alert')
+                callout.querySelector('.content').innerHTML = engine.render(tplCallout.innerHTML, resp_data)
+                callout.classList.add('display')
+                setTimeout(() => {
+                    callout.classList.remove('display')
+                }, 2000)
+                return
             }
         } catch (error) {
             console.error('💥 Erreur réseau:', error)
