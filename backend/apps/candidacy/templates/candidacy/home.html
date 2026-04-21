@@ -87,7 +87,7 @@
 </div>
 <template id="tplCallout">
   [[ if(success){ ]]
-  <p>Copié !</p>
+    <p>📋 Candidature #[[- candidacy_id ]] sauvegardée !</p>
   [[ }else{ ]]
     <dl>
       [[ for([ key, value ] of Object.entries(errors)){ ]]
