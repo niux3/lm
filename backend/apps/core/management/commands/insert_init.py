@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.contrib.auth import get_user_model
 from candidacy.models import (
     Civility,
     Contract,
@@ -63,6 +64,8 @@ class Command(BaseCommand):
         positions = ['frontend', 'backend', 'fullstack']
         contracts = ['CDI', 'freelance']
 
+        self._create_superuser()
+
         self._insert_base(civilities, Civility)
         self._insert_base(status, Status)
         self._insert_base(positions, Position)
@@ -93,6 +96,23 @@ class Command(BaseCommand):
                             )
                         )
         self.stdout.write(self.style.SUCCESS('✅ Data inserted successfully!'))
+
+    def _create_superuser(self):
+        username = 'renaud'
+        email = 'dom@dom.com'
+        password = 'admin'
+
+        User = get_user_model()
+
+        if not User.objects.filter(username=username).exists():
+            User.objects.create_superuser(
+                username=username,
+                email=email,
+                password=password
+            )
+            self.stdout.write(
+                self.style.SUCCESS(f'  👤 Created superuser: {username}')
+            )
 
     def _insert_base(self, data, model):
         for item in data:
