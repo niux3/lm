@@ -19,6 +19,11 @@ class HomeCreateView(CreateView):
     def form_valid(self, form):
         if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             self.object = form.save()
+            return JsonResponse({
+                'success': True,
+                'message': self.object.message_genere,
+                'candidacy_id': self.object.pk
+            })
         return super().form_valid(form)
 
     def form_invalid(self, form):
