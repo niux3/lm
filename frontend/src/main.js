@@ -1,5 +1,5 @@
 import { TemplateEngine } from '@niuxe/template-engine'
-import { debounce, extractFormData } from './utils'
+import { debounce, extractFormData, copyToClipboard } from './utils'
 import './style.css'
 
 
@@ -72,6 +72,7 @@ import './style.css'
         const formData = new FormData(e.target)
 
         const text = engine.render(tpl.innerHTML, data)
+        copyToClipboard(text)
         formData.append('message_genere', text)
         formData.append('url_source', formData.get('url_source'))  // déjà présent si champ dans form
         formData.append('title', formData.get('title'))
@@ -97,10 +98,9 @@ import './style.css'
 
             if (resp_data.success) {
                 // Copie le message dans le presse-papier
-                await navigator.clipboard.writeText(resp_data.message)
 
                 // Reset du formulaire
-                // form.reset()
+                e.target.reset()
 
                 // Affiche la notification
                 const alert = document.querySelector('.callout')
@@ -115,14 +115,5 @@ import './style.css'
         } catch (error) {
             console.error('💥 Erreur réseau:', error)
         }
-
-
-        // e.target.reset()
-        // const alert = document.querySelector('.callout')
-        // alert.classList.add('display')
-        // let d = setTimeout(() => {
-        //     alert.classList.remove('display')
-        //     clearTimeout(d)
-        // }, 2000)
     })
 })()

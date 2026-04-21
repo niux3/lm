@@ -79,3 +79,20 @@ export const debounce = (func, wait, immediate, context) => {
         return result
     }
 }
+
+export const copyToClipboard = (text) => {
+    try {
+        // Méthode moderne (HTTPS ou localhost)
+        navigator.clipboard.writeText(text);
+    } catch (err) {
+        // Fallback pour HTTP sur domaines personnalisés
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
+}
