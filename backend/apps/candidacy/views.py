@@ -1,10 +1,12 @@
-from pprint import pprint
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView
 from django.http.response import JsonResponse
 from candidacy.models import TechnologyCategory
 from candidacy.forms import CandidacyForm
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class HomeCreateView(CreateView):
     template_name = 'candidacy/home.html'
     form_class = CandidacyForm
