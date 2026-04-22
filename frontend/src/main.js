@@ -1,5 +1,5 @@
 import { TemplateEngine } from '@niuxe/template-engine'
-import { debounce, extractFormData, copyToClipboard } from './utils'
+import { debounce, extractFormData, copyToClipboard, filterTechnos } from './utils'
 import './style.css'
 
 
@@ -8,42 +8,30 @@ import './style.css'
     document.querySelector('input[type="range"]').addEventListener('input', e => {
         e.target.nextElementSibling.value = e.target.value
     })
+
+    // Récupère les paramètres GET de l'URL de l'iframe
+    const urlParams = new URLSearchParams(window.location.search);
+    const sourceUrl = urlParams.get('url') || '';
+    const sourceTitle = urlParams.get('title') || '';
+
+    // Remplit les champs du formulaire
+    const urlField = document.querySelector('[name="url_source"]');
+    const titleField = document.querySelector('[name="title"]');
+
+    if (urlField && sourceUrl) {
+        urlField.value = decodeURIComponent(sourceUrl);
+    }
+
+    if (titleField && sourceTitle) {
+        titleField.value = decodeURIComponent(sourceTitle);
+    }
+
+
     const engine = new TemplateEngine()
 
     const search = document.getElementById('search')
     const resetButton = search.nextElementSibling
 
-    const filterTechnos = (searchValue) => {
-        const value = searchValue.toLowerCase()
-
-        // Récupère tous les fieldsets de technologies
-        const fieldsets = technoRender.querySelectorAll('fieldset.fieldset')
-
-        fieldsets.forEach(fieldset => {
-            let hasVisibleTechno = false
-
-            // Récupère tous les spans contenant les checkboxes
-            const spans = fieldset.querySelectorAll('span')
-
-            spans.forEach(span => {
-                const label = span.querySelector('label')
-                if (label) {
-                    const labelText = label.textContent.toLowerCase()
-                    const isMatch = labelText.includes(value)
-
-                    // Cache ou affiche le span
-                    span.classList.toggle('hide', !isMatch)
-
-                    if (isMatch) {
-                        hasVisibleTechno = true
-                    }
-                }
-            })
-
-            // Cache ou affiche le fieldset entier
-            fieldset.classList.toggle('hide', !hasVisibleTechno)
-        })
-    }
 
     search.addEventListener('input', e => {
         debounce(() => filterTechnos(e.target.value), 500)()

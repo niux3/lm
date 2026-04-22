@@ -96,3 +96,36 @@ export const copyToClipboard = (text) => {
         document.body.removeChild(textarea);
     }
 }
+
+
+export const filterTechnos = (searchValue) => {
+    const value = searchValue.toLowerCase()
+
+    // Récupère tous les fieldsets de technologies
+    const fieldsets = technoRender.querySelectorAll('fieldset.fieldset')
+
+    fieldsets.forEach(fieldset => {
+        let hasVisibleTechno = false
+
+        // Récupère tous les spans contenant les checkboxes
+        const spans = fieldset.querySelectorAll('span')
+
+        spans.forEach(span => {
+            const label = span.querySelector('label')
+            if (label) {
+                const labelText = label.textContent.toLowerCase()
+                const isMatch = labelText.includes(value)
+
+                // Cache ou affiche le span
+                span.classList.toggle('hide', !isMatch)
+
+                if (isMatch) {
+                    hasVisibleTechno = true
+                }
+            }
+        })
+
+        // Cache ou affiche le fieldset entier
+        fieldset.classList.toggle('hide', !hasVisibleTechno)
+    })
+}
